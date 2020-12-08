@@ -199,9 +199,11 @@ DecoderState::decode() const
       auto prefix_length = output.size();
       auto words = ext_scorer->split_labels(output);
       // remove word insert
-      approx_ctc = approx_ctc - prefix_length * ext_scorer->beta;
+      // REMOVING THIS LINE FOR SANITY
+      // approx_ctc = approx_ctc - prefix_length * ext_scorer->beta;
       // remove language model weight:
-      approx_ctc -= (ext_scorer->get_sent_log_prob(words)) * ext_scorer->alpha;
+      // REMOVING THIS LINE FOR SANITY
+      // approx_ctc -= (ext_scorer->get_sent_log_prob(words)) * ext_scorer->alpha;
     }
     prefixes_copy[i]->approx_ctc = approx_ctc;
   }
